@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color:   	white;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+#houses {
+  background-color: red;
+  width: 20%;
+  height: 640px;
+  float: left;
+
+}
+#family{
+  width: 30%;
+  height: 640px;
+  background-color: white;
+  float: left;
+  overflow: scroll;
+}
+#attributes{
+  width: 50%;
+  height: 640px;
+  background-color: grey;
+  float: left;
+  overflow: scroll;
+}
+.houses img {
+  width: 200px;
+  height:125px;
+  margin-left: 45px;
+  display: block;
+
+  }
+.houses img:hover {
+    opacity: 0.5;
+    filter: blur();
+}
+
+#team {
+  background-color: grey;
+  float: left;
+  width: 20%;
+  height: 640px;
+
+
+}
+
+#imghero img {
+  width: 150px;
+  height: 250px;
+  float: left;
+
+
+}
+#imghero {
+  background-color: grey;
+  width: 300px;
+  height: 250px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+h1 {
+ background-color: #BDC3C7;
+
+}
+
+h2 {
+  margin: 0 auto;
+}
+.heroinf img {
+  margin: 0 auto;
+}
