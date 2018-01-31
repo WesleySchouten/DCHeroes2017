@@ -30,7 +30,7 @@ header("refresh:2; url=GameOfThrones.php?teamId=$team&heroId=$hero");
 
 <html>
 <div>
-  <h1>Thank You for submitting!</h1>
+  <h1>Thank You for Reviewing!</h1>
 </div>
 </body>
 </html>

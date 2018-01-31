@@ -7,7 +7,6 @@ $dbname     = "dc-heroes";
 //create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-
 //check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -21,7 +20,7 @@ if ($conn->connect_error) {
     <title>Game Of thrones</title>
   </head>
   <header>
-    <img src="images/gotbanner.png" width="100%" height="200px">
+    <a href="GameOfThrones.php"><img src="images/gotbanner.png" width="100%" height="200px"></a>
       </header>
   <body>
   <div id="team">
@@ -42,7 +41,7 @@ if ($result->num_rows > 0) {
         echo $row['teamImage'];
 ?>></a>
   <?php
-    }
+}
 }
 ?>
 </div>
@@ -123,16 +122,16 @@ while ($row = $resultGetHero->fetch_assoc()) {
       <form action="insert.php?heroId=<?php echo $row['heroId']; ?>" method="POST" class="form-rate">
         <div class="rate">
           <input required type="radio" id="rating10" name="rating" value="5" /><label class="lblRating" for="rating10" title="5 stars"></label>
-          <input type="radio" id="rating9" name="rating" value="4.5" /><label class="lblRating half" for="rating9" title="4 1/2 stars"></label>
-          <input type="radio" id="rating8" name="rating" value="4" /><label class="lblRating" for="rating8" title="4 stars"></label>
-          <input type="radio" id="rating7" name="rating" value="3.5" /><label class="lblRating half" for="rating7" title="3 1/2 stars"></label>
-          <input type="radio" id="rating6" name="rating" value="3" /><label class="lblRating" for="rating6" title="3 stars"></label>
-          <input type="radio" id="rating5" name="rating" value="2.5" /><label class="lblRating half" for="rating5" title="2 1/2 stars"></label>
-          <input type="radio" id="rating4" name="rating" value="2" /><label class="lblRating" for="rating4" title="2 stars"></label>
-          <input type="radio" id="rating3" name="rating" value="1.5" /><label class="lblRating half" for="rating3" title="1 1/2 stars"></label>
-          <input type="radio" id="rating2" name="rating" value="1" /><label class="lblRating" for="rating2" title="1 star"></label>
-          <input type="radio" id="rating1" name="rating" value="0.5" /><label class="lblRating half" for="rating1" title="1/2 star"></label>
-          <input type="radio" id="rating0" name="rating" value="0" /><label class="lblRating" for="rating0" title="No star"></label>
+                    <input type="radio" id="rating9" name="rating" value="4.5" /><label class="lblRating half" for="rating9" title="4 1/2 stars"></label>
+                    <input type="radio" id="rating8" name="rating" value="4" /><label class="lblRating" for="rating8" title="4 stars"></label>
+                    <input type="radio" id="rating7" name="rating" value="3.5" /><label class="lblRating half" for="rating7" title="3 1/2 stars"></label>
+                    <input type="radio" id="rating6" name="rating" value="3" /><label class="lblRating" for="rating6" title="3 stars"></label>
+                    <input type="radio" id="rating5" name="rating" value="2.5" /><label class="lblRating half" for="rating5" title="2 1/2 stars"></label>
+                    <input type="radio" id="rating4" name="rating" value="2" /><label class="lblRating" for="rating4" title="2 stars"></label>
+                    <input type="radio" id="rating3" name="rating" value="1.5" /><label class="lblRating half" for="rating3" title="1 1/2 stars"></label>
+                    <input type="radio" id="rating2" name="rating" value="1" /><label class="lblRating" for="rating2" title="1 star"></label>
+                    <input type="radio" id="rating1" name="rating" value="0.5" /><label class="lblRating half" for="rating1" title="1/2 star"></label>
+                    <input type="radio" id="rating0" name="rating" value="0" /><label class="lblRating" for="rating0" title="No star"></label>
         </div>
                   <textarea class="formMessage" name="review" placeholder="Please write a review for the hero" required></textarea>
                 </div>
@@ -143,7 +142,36 @@ while ($row = $resultGetHero->fetch_assoc()) {
                   <input type="hidden" name="teamId" value="<?php echo $row['teamId']; ?>" required/>
                 </div>
               </form>
+              <div id="reviews">
+                      <?php
 
+
+                      $heroId = $_GET['heroId'];
+      	               $sql ="SELECT * FROM rating Where heroId='".$heroId."'";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    //output data of each row
+
+                    while ($row = $result->fetch_assoc()) {
+                ?>
+                      <div id="text-review">
+                        <p class="review"> <?php echo $row['ratingReview']; ?> </p>
+                      </div>
+                      <div id="star-review">
+                        <p class="review">Stars <?php echo $row['rating']; ?> </p>
+                      </div>
+                      <div id="date-review">
+                        <p class="review"> <?php echo strftime("%d - %B - %Y - %X ", $row  ['ratingDate']) ?> </p>
+                      </div>
+
+
+                        <?php
+                                }
+                            } else {
+                                ?>
+                                <p class="hero-3"> <?php echo "No reviews have been written yet for this hero. Be the first one to do so by writing one now!"; ?> </p> <?php
+                            } ?>
+                          </div>
 
 
 
